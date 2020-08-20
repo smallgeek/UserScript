@@ -8,14 +8,22 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
-    'use strict';
+'use strict';
 
-    // いいね、コメント、閲覧数の要素を取得
+function hideElements() {
+     // いいね、コメント、閲覧数の要素を取得
     const reports = Array.from(document.querySelectorAll('.display-report'));
     const lists = Array.from(document.querySelectorAll('.count-list'));
 
-    for (const element of reports.concat(lists)) {
+    // フォロワー数の要素を取得
+    const follow = Array.from(document.querySelectorAll('.sc-1dlbdn6-10.dOlYed'));
+
+    for (const element of reports.concat(lists).concat(follow)) {
         element.parentElement.removeChild(element);
     }
+}
+
+(function() {
+    const observer = new MutationObserver(hideElements);
+    observer.observe(document.body, {childList: true, subtree: true});
 })();
