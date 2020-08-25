@@ -15,7 +15,10 @@ function hideElements() {
     const retweets = Array.from(document.querySelectorAll('.js-retweet-count.retweet-count'));
     const likes = Array.from(document.querySelectorAll('.js-like-count.like-count'));
 
-    for (const element of retweets.concat(likes)) {
+    const retweeters = Array.from(document.querySelectorAll('[data-type="retweeters"]'));
+    const favoriters = Array.from(document.querySelectorAll('[data-type="favoriters"]'));
+
+    for (const element of retweets.concat(likes).concat(retweeters).concat(favoriters)) {
         element.parentElement.removeChild(element);
     }
 }
