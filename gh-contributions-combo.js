@@ -19,7 +19,7 @@
     }
 
     // 当日の1日前から途切れるまでを探す
-    const today = new Date(Date.now());
+    const today = new Date();
     const rects = Array.from(calendar.getElementsByTagName("rect"));
 
     let days = 0;
@@ -28,11 +28,15 @@
       const rectDate = new Date(r.getAttribute('data-date'));
       const dataCount = Number.parseInt(r.getAttribute('data-count'));
 
-      if (dataCount === 0 && rectDate !== today) {
+      if (dataCount === 0) {
+        if (rectDate.getFullYear() !== today.getFullYear() ||
+            rectDate.getMonth() !== today.getMonth() ||
+            rectDate.getDay() !== today.getDay()) {
           break;
+        }
+      } else {
+        days++;
       }
-
-      days++;
     }
 
     let appendText = "";
