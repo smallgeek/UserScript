@@ -12,7 +12,7 @@
 
 function hideElements() {
     // フォロー・フォロワー数
-    const ff = Array.from(document.querySelectorAll('a.r-hkyrab.r-1loqt21.r-1tl8opc.r-a023e6.r-16dba41.r-ad9z0x.r-bcqeeo.r-qvutc0.css-4rbku5.css-18t94o4.css-901oao'));
+    const ff = Array.from(document.querySelectorAll('.css-1dbjc4n.r-13awgt0.r-18u37iz.r-1w6e6rj'));
     // コメント・リツイート・いいねの数
     const replys = Array.from(document.querySelectorAll('[data-testid="reply"]')).map(el => el.children[0].children[1]);
     const retweets = Array.from(document.querySelectorAll('[data-testid="retweet"], [data-testid="unretweet"]')).map(el => el.children[0].children[1]);
