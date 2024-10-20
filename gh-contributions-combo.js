@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub contributions Combo
 // @namespace    gh-contributions-combo
-// @version      0.1
+// @version      0.2
 // @description  Add GitHub contributions combo
 // @author       smallgeek
 // @match        https://github.com/*
@@ -20,13 +20,13 @@
 
     // 当日の1日前から途切れるまでを探す
     const today = new Date();
-    const rects = Array.from(calendar.getElementsByTagName("rect"));
+    const rects = Array.from(calendar.getElementsByClassName('ContributionCalendar-day'));
 
     let days = 0;
 
     for (const r of rects.reverse()) {
       const rectDate = new Date(r.getAttribute('data-date'));
-      const dataCount = Number.parseInt(r.getAttribute('data-count'));
+      const dataCount = Number.parseInt(r.getAttribute('data-level'));
 
       if (dataCount === 0) {
         if (rectDate.getFullYear() !== today.getFullYear() ||
@@ -46,6 +46,6 @@
     }
 
     const container = document.getElementsByClassName('js-yearly-contributions')[0].children[0];
-    const h2 = container.children[1];
+    const h2 = container.getElementsByTagName('h2')[0];
     h2.innerHTML += appendText;
 })();
