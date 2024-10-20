@@ -8,7 +8,9 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+let observer;
+
+const f = () => {
     'use strict';
 
     // 草のコンテナを探す
@@ -48,4 +50,11 @@
     const container = document.getElementsByClassName('js-yearly-contributions')[0].children[0];
     const h2 = container.getElementsByTagName('h2')[0];
     h2.innerHTML += appendText;
+
+    observer.disconnect();
+}
+
+(function() {
+    observer = new MutationObserver(f);
+    observer.observe(document.body, {childList: true, subtree: true});
 })();
