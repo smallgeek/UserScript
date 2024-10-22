@@ -13,6 +13,12 @@ let observer;
 const f = () => {
     'use strict';
 
+    // 連続コントリビュートが追加済みなら処理しない
+    const combo = document.getElementById('gh-contributions-combo');
+    if (combo) {
+      return;
+    }
+
     // 草のコンテナを探す
     const calendar = document.getElementsByClassName("js-calendar-graph")[0];
 
@@ -50,14 +56,12 @@ const f = () => {
     let appendText = "";
 
     if (days > 1) {
-        appendText = ` / continuing for ${days} days`;
+        appendText = `<span id='gh-contributions-combo'> / continuing for ${days} days</span>`;
     }
 
     const container = document.getElementsByClassName('js-yearly-contributions')[0].children[0];
     const h2 = container.getElementsByTagName('h2')[0];
     h2.innerHTML += appendText;
-
-    observer.disconnect();
 }
 
 (function() {
