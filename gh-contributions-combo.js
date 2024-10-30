@@ -53,11 +53,11 @@ const f = () => {
       }
     }
 
-    let appendText = "";
-
+    let appendText = "<span id='gh-contributions-combo'>";
     if (days > 1) {
-        appendText = `<span id='gh-contributions-combo'> / continuing for ${days} days</span>`;
+        appendText += `/ ${days} days ongoing</span>`;
     }
+    appendText += "</span>";
 
     const container = document.getElementsByClassName('js-yearly-contributions')[0].children[0];
     const h2 = container.getElementsByTagName('h2')[0];
